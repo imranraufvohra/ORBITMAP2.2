@@ -102,14 +102,20 @@ function ProductCard({ product }: { product: Product }) {
       className="group flex flex-col overflow-hidden rounded-2xl border border-white/10 bg-white/[0.02] transition-colors hover:border-orbit/40"
     >
       <div className="relative aspect-square w-full overflow-hidden bg-white">
-        <Image
-          src={product.image_url}
-          unoptimized={!product.image_url.includes(".supabase.co")}
-          alt={product.name}
-          fill
-          sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 22vw"
-          className="object-contain p-4 transition-transform duration-300 group-hover:scale-105"
-        />
+        {product.image_url ? (
+          <Image
+            src={product.image_url}
+            unoptimized={!product.image_url.includes(".supabase.co")}
+            alt={product.name}
+            fill
+            sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 22vw"
+            className="object-contain p-4 transition-transform duration-300 group-hover:scale-105"
+          />
+        ) : (
+          <div className="flex h-full w-full items-center justify-center text-xs text-gray-400">
+            No image
+          </div>
+        )}
         <div className="absolute left-2 top-2 flex flex-col gap-1.5">
           {product.is_featured && (
             <span className="rounded-full bg-signal px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide text-void">
